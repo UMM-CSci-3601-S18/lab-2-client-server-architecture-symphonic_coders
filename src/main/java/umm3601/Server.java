@@ -42,7 +42,7 @@ public class Server {
     get("api/users", userController::getUsers);
 
     // An example of throwing an unhandled exception so you can see how the
-    // Java Spark debugger displays errors like this.
+    // Java Spark debugger displays sers.htmlerrors like this.
     get("api/error", (req, res) -> {
       throw new RuntimeException("A demonstration error");
     });
