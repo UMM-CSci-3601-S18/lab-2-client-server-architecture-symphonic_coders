@@ -59,11 +59,15 @@ we'll just refer to this as the `public` folder.
 ## Questions
 
 :question: *1* What is the purpose of `.gitignore`?
+To specify files that git will not commit changes from/upload.
 
 :question: *2* What role is Gradle playing in the
 project, and what is the purpose of `build.gradle`?
+Gradle is a development tool that helps to integrate multiple parts of a project
+build.gradle compiles all the files and starts the server
 
 :question: *3* What is the purpose of Travis-CI?
+Adds testing functionality
 
 :question: *4* Explain what a _route_ is.
 
