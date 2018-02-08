@@ -14,7 +14,7 @@ import static umm3601.Util.buildSuccessJsonResponse;
 public class TodoController {
 
   private final Gson gson;
-  private umm3601.todo.Database database;
+  private Database database;
 
 
   public TodoController(Database database) {
