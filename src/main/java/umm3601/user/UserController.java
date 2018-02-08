@@ -17,7 +17,7 @@ public class UserController {
   private final Gson gson;
   private Database database;
 
-  /**
+  /**Controller
    * Construct a controller for users.
    *
    * This loads the "database" of user info from a JSON file and
