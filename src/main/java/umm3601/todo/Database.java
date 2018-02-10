@@ -32,11 +32,20 @@ public class Database {
       filteredTodos = filterTodosById(filteredTodos, targetId);
     }
 
+    if(queryParams.containsKey("status")){
+      Boolean targetStatus = Boolean.parseBoolean(queryParams.get("status")[0]);
+      filteredTodos = filterTodosByStatus(filteredTodos, targetStatus);
+    }
+
     return filteredTodos;
   }
 
   public Todo[] filterTodosById(Todo[] todos, String targetId) {
     return Arrays.stream(todos).filter(x -> x._id.equals(targetId)).toArray(Todo[]::new);
+  }
+
+  public Todo[] filterTodosByStatus(Todo[] todos, Boolean targetStatus){
+    return Arrays.stream(todos).filter(x -> x.status == targetStatus).toArray(Todo[]::new);
   }
 
 }
