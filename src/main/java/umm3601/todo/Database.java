@@ -42,6 +42,15 @@ public class Database {
       filteredTodos = filterTodosByKeyword(filteredTodos, targetKeyword);
     }
 
+    if(queryParams.containsKey("limit")){
+      int todoLimit = Integer.parseInt(queryParams.get("limit")[0]);
+      Todo[] tempTodos = new Todo[todoLimit];
+      for(int i = 0; i < todoLimit; i++){
+        tempTodos[i] = filteredTodos[i];
+      }
+      filteredTodos = tempTodos;
+    }
+
     return filteredTodos;
   }
 
