@@ -7,6 +7,23 @@ function getAllTodos() {
   });
 }
 
+
+//Put individual logic for filtering here
+
+
+/*
+function filterTodos() {
+  console.log("Filtering the todos");
+
+  var HttypThingy = new HttpClient();
+  HttypThingy.get("/api/todos?limit=" + document.getElementById("limit").value
+    + "&keyword" + document.getElementById("keyword").value
+    + "&_id" + document.getElementById("_id").value, function (returned_json) {
+    document.getElementById('jsonDump').innerHTML = returned_json;
+  });
+}
+*/
+
 function HttpClient() {
   // We'll take a URL string, and a callback function.
   this.get = function(aUrl, aCallback){
