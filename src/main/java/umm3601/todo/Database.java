@@ -37,6 +37,11 @@ public class Database {
       filteredTodos = filterTodosByStatus(filteredTodos, targetStatus);
     }
 
+    if(queryParams.containsKey("keyword")){
+      String targetKeyword = queryParams.get("keyword")[0];
+      filteredTodos = filterTodosByKeyword(filteredTodos, targetKeyword);
+    }
+
     return filteredTodos;
   }
 
@@ -46,6 +51,10 @@ public class Database {
 
   public Todo[] filterTodosByStatus(Todo[] todos, Boolean targetStatus){
     return Arrays.stream(todos).filter(x -> x.status == targetStatus).toArray(Todo[]::new);
+  }
+
+  public Todo[] filterTodosByKeyword(Todo[] todos, String targetKeyword){
+    return Arrays.stream(todos).filter(x -> x.body.contains(targetKeyword)).toArray(Todo[]::new);
   }
 
 }
