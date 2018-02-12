@@ -63,6 +63,12 @@ function filterTodosByCategory() {
   });
 }
 
+//Doesn't work yet...
+function filterTodosByOwnerAndKeyword() {
+  console.log("Filtering the todos");
+
+  filterTodosByKeyword() + filterTodosByOwner();
+}
 
 function HttpClient() {
   // We'll take a URL string, and a callback function.

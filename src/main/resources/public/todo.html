@@ -44,6 +44,8 @@
 
   <br>
 
+Owner && Keyword: <button type="button" id="OwnerAndKeyword">Submit</button>
+
 <hr/>
 
 <div id="jsonDump" style="margin-top:20px"> Json will go here </div>
@@ -73,6 +75,9 @@
 
     element = document.getElementById('categoryTodos');
     element.addEventListener("click", filterTodosByCategory, true);
+
+    element = document.getElementById('OwnerAndKeyword');
+    element.addEventListener("click", filterTodosByOwnerAndKeyword, true);
 
   }
 </script>
