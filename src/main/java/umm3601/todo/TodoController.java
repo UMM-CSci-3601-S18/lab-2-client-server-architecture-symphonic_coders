@@ -2,11 +2,8 @@ package umm3601.todo;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
-import com.sun.xml.internal.bind.v2.TODO;
 import spark.Request;
 import spark.Response;
-import umm3601.todo.Database;
-import umm3601.todo.Todo;
 
 import static umm3601.Util.buildFailJsonResponse;
 import static umm3601.Util.buildSuccessJsonResponse;

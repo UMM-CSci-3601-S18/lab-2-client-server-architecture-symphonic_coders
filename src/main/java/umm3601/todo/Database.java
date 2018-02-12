@@ -1,9 +1,6 @@
 package umm3601.todo;
 
 import com.google.gson.Gson;
-import com.sun.xml.internal.bind.v2.TODO;
-import umm3601.todo.Todo;
-import umm3601.user.User;
 
 import java.io.FileReader;
 import java.io.IOException;
@@ -27,32 +24,32 @@ public class Database {
     Todo[] filteredTodos = allTodos;
 
     //Filter todos if defined
-    if(queryParams.containsKey("_id") && !(queryParams.get("_id").equals(""))){
+    if(queryParams.containsKey("_id") && !(queryParams.get("_id")[0].equals(""))){
       String targetId = queryParams.get("_id")[0];
       filteredTodos = filterTodosById(filteredTodos, targetId);
     }
 
-    if(queryParams.containsKey("status") && !(queryParams.get("status").equals(""))){
+    if(queryParams.containsKey("status") && !(queryParams.get("status")[0].equals(""))){
       Boolean targetStatus = Boolean.parseBoolean(queryParams.get("status")[0]);
       filteredTodos = filterTodosByStatus(filteredTodos, targetStatus);
     }
 
-    if(queryParams.containsKey("keyword") && !(queryParams.get("keyword").equals(""))){
+    if(queryParams.containsKey("keyword") && !(queryParams.get("keyword")[0].equals(""))){
       String targetKeyword = queryParams.get("keyword")[0];
       filteredTodos = filterTodosByKeyword(filteredTodos, targetKeyword);
     }
 
-    if(queryParams.containsKey("owner") && !(queryParams.get("owner").equals(""))){
+    if(queryParams.containsKey("owner") && !(queryParams.get("owner")[0].equals(""))){
       String targetKeyword = queryParams.get("owner")[0];
       filteredTodos = filterTodosByOwner(filteredTodos, targetKeyword);
     }
 
-    if(queryParams.containsKey("category") && !(queryParams.get("category").equals(""))){
+    if(queryParams.containsKey("category") && !(queryParams.get("category")[0].equals(""))){
       String targetKeyword = queryParams.get("category")[0];
       filteredTodos = filterTodosByCategory(filteredTodos, targetKeyword);
     }
 
-    if(queryParams.containsKey("limit") && !(queryParams.get("limit").equals(""))){
+    if(queryParams.containsKey("limit") && !(queryParams.get("limit")[0].equals(""))){
       int todoLimit = Integer.parseInt(queryParams.get("limit")[0]);
       Todo[] tempTodos = new Todo[todoLimit];
       for(int i = 0; i < todoLimit; i++){
@@ -76,11 +73,11 @@ public class Database {
     return Arrays.stream(todos).filter(x -> x.body.contains(targetKeyword)).toArray(Todo[]::new);
   }
 
-  public Todo[] filterTodosByOwner(Todo[] todos, String targetOwner){
+  private Todo[] filterTodosByOwner(Todo[] todos, String targetOwner){
     return Arrays.stream(todos).filter(x -> x.owner.equals(targetOwner)).toArray(Todo[]::new);
   }
 
-  public Todo[] filterTodosByCategory(Todo[] todos, String targetCategory){
+  private Todo[] filterTodosByCategory(Todo[] todos, String targetCategory){
     return Arrays.stream(todos).filter(x -> x.category.equals(targetCategory)).toArray(Todo[]::new);
   }
 
