@@ -63,12 +63,36 @@ function filterTodosByCategory() {
   });
 }
 
-//Doesn't work yet...
+//Basic idea of how to multiple by multiple parameters, starting with just two
+/*
 function filterTodosByOwnerAndKeyword() {
   console.log("Filtering the todos");
 
-  filterTodosByKeyword() + filterTodosByOwner();
+  var HttypThingy = new HttpClient();
+  HttypThingy.get("/api/todos?owner=" + document.getElementById("owner").value + "&keyword=" + document.getElementById("keyword").value, function (returned_json) {
+    document.getElementById('jsonDump').innerHTML = returned_json;
+  });
 }
+*/
+
+//Actual implementation of multiple parameter filtering
+//Currently will not return anything if a field is empty even if other fields are populated
+//Not sure why yet
+function filterTodos() {
+  console.log("Filtering the todos");
+
+  var HttypThingy = new HttpClient();
+  HttypThingy.get("/api/todos?keyword=" + document.getElementById("keyword").value
+                //+ "&status=" + document.getElementById("status").value
+                //+ "&_id=" + document.getElementById("keyword").value
+                + "&owner=" + document.getElementById("owner").value
+                //+ "&category" + document.getElementById("category").value
+                //+ "&limit=" + document.getElementById("limit").value
+    , function (returned_json) {
+      document.getElementById('jsonDump').innerHTML = returned_json;
+    });
+}
+
 
 function HttpClient() {
   // We'll take a URL string, and a callback function.

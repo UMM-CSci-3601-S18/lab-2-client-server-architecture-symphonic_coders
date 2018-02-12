@@ -27,32 +27,32 @@ public class Database {
     Todo[] filteredTodos = allTodos;
 
     //Filter todos if defined
-    if(queryParams.containsKey("_id")){
+    if(queryParams.containsKey("_id") && !(queryParams.get("_id").equals(""))){
       String targetId = queryParams.get("_id")[0];
       filteredTodos = filterTodosById(filteredTodos, targetId);
     }
 
-    if(queryParams.containsKey("status")){
+    if(queryParams.containsKey("status") && !(queryParams.get("status").equals(""))){
       Boolean targetStatus = Boolean.parseBoolean(queryParams.get("status")[0]);
       filteredTodos = filterTodosByStatus(filteredTodos, targetStatus);
     }
 
-    if(queryParams.containsKey("keyword")){
+    if(queryParams.containsKey("keyword") && !(queryParams.get("keyword").equals(""))){
       String targetKeyword = queryParams.get("keyword")[0];
       filteredTodos = filterTodosByKeyword(filteredTodos, targetKeyword);
     }
 
-    if(queryParams.containsKey("owner")){
+    if(queryParams.containsKey("owner") && !(queryParams.get("owner").equals(""))){
       String targetKeyword = queryParams.get("owner")[0];
       filteredTodos = filterTodosByOwner(filteredTodos, targetKeyword);
     }
 
-    if(queryParams.containsKey("category")){
+    if(queryParams.containsKey("category") && !(queryParams.get("category").equals(""))){
       String targetKeyword = queryParams.get("category")[0];
       filteredTodos = filterTodosByCategory(filteredTodos, targetKeyword);
     }
 
-    if(queryParams.containsKey("limit")){
+    if(queryParams.containsKey("limit") && !(queryParams.get("limit").equals(""))){
       int todoLimit = Integer.parseInt(queryParams.get("limit")[0]);
       Todo[] tempTodos = new Todo[todoLimit];
       for(int i = 0; i < todoLimit; i++){

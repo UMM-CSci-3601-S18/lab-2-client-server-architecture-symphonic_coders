@@ -37,6 +37,7 @@
 <br>
 
   Status:   <select id="status">
+               <option value="">---------</option>
                <option value="true">Complete</option>
                <option value="false">Incomplete</option>
             </select>
@@ -77,7 +78,7 @@ Owner && Keyword: <button type="button" id="OwnerAndKeyword">Submit</button>
     element.addEventListener("click", filterTodosByCategory, true);
 
     element = document.getElementById('OwnerAndKeyword');
-    element.addEventListener("click", filterTodosByOwnerAndKeyword, true);
+    element.addEventListener("click", filterTodos, true);
 
   }
 </script>
