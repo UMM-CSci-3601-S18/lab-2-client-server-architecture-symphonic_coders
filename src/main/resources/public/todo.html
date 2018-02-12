@@ -9,25 +9,40 @@
 <body>
 <button type="button" id="getTodos">Get All Todos</button>
 
-<form>
+<br>
 
-  Number of Todos: <input type="text" name="limit"><br>
+  Owner: <input type="text" id="owner"> <button type="button" id="todosByOwner">Submit</button>
 
-  Keyword: <input type="text" name="keyword"><br>
+<br>
 
-  ID Number: <input type="text" name="_id"><br>
+  Category: <select id="category">
+              <option value="software design">Software Design</option>
+              <option value="video games">Video Games</option>
+              <option value="homework">Homework</option>
+              <option value="groceries">Groceries</option>
+            </select> <button type="button" id="categoryTodos">Submit</button>
 
-  Status: <input type="radio" id="statusComplete" name="statusComplete" value="true">
-  <label for="statusComplete">Complete</label>
+<br>
 
-  <input type="radio" id="statusIncomplete" name="statusIncomplete" value="false">
-  <label for="statusIncomplete">Incomplete</label>
+  Number of Todos: <input type="text" id="limit"> <button type="button" id="limitTodos">Submit</button>
+
+<br>
+
+  Keyword: <input type="text" id="keyword"> <button type="button" id="keywordTodos">Submit</button>
+
+<br>
+
+  ID Number: <input type="text" id="_id"> <button type="button" id="todosByID">Submit</button>
+
+<br>
+
+  Status:   <select id="status">
+               <option value="true">Complete</option>
+               <option value="false">Incomplete</option>
+            </select>
+  <button type="button" id="statusTodos">Submit</button>
 
   <br>
-
-  <input type="submit" id="filter"> Filter Todos
-
-</form>
 
 <hr/>
 
@@ -41,8 +56,23 @@
     var element = document.getElementById('getTodos');
     element.addEventListener("click", getAllTodos, true);
 
-    var element = document.getElementById('filter');
-    element.addEventListener("click", filterTodos, true);
+    element = document.getElementById('limitTodos');
+    element.addEventListener("click", filterTodosByLimit, true);
+
+    element = document.getElementById('keywordTodos');
+    element.addEventListener("click", filterTodosByKeyword, true);
+
+    element = document.getElementById('todosByID');
+    element.addEventListener("click", filterTodosByID, true);
+
+    element = document.getElementById('statusTodos');
+    element.addEventListener("click", filterTodosByStatus, true);
+
+    element = document.getElementById('todosByOwner');
+    element.addEventListener("click", filterTodosByOwner, true);
+
+    element = document.getElementById('categoryTodos');
+    element.addEventListener("click", filterTodosByCategory, true);
 
   }
 </script>

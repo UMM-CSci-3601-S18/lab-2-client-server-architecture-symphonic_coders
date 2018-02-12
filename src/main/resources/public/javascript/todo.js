@@ -8,21 +8,61 @@ function getAllTodos() {
 }
 
 
-//Put individual logic for filtering here
-
-
-/*
-function filterTodos() {
+function filterTodosByLimit() {
   console.log("Filtering the todos");
 
   var HttypThingy = new HttpClient();
-  HttypThingy.get("/api/todos?limit=" + document.getElementById("limit").value
-    + "&keyword" + document.getElementById("keyword").value
-    + "&_id" + document.getElementById("_id").value, function (returned_json) {
+  HttypThingy.get("/api/todos?limit=" + document.getElementById("limit").value, function (returned_json) {
     document.getElementById('jsonDump').innerHTML = returned_json;
   });
 }
-*/
+
+function filterTodosByKeyword() {
+  console.log("Filtering the todos");
+
+  var HttypThingy = new HttpClient();
+  HttypThingy.get("/api/todos?keyword=" + document.getElementById("keyword").value, function (returned_json) {
+    document.getElementById('jsonDump').innerHTML = returned_json;
+  });
+}
+
+function filterTodosByID() {
+  console.log("Filtering the todos");
+
+  var HttypThingy = new HttpClient();
+  HttypThingy.get("/api/todos?_id=" + document.getElementById("_id").value, function (returned_json) {
+    document.getElementById('jsonDump').innerHTML = returned_json;
+  });
+}
+
+function filterTodosByStatus() {
+  console.log("Filtering the todos");
+
+  var HttypThingy = new HttpClient();
+  HttypThingy.get("/api/todos?status=" + document.getElementById("status").value, function (returned_json) {
+    document.getElementById('jsonDump').innerHTML = returned_json;
+  });
+}
+
+function filterTodosByOwner() {
+  console.log("Filtering the todos");
+
+  var HttypThingy = new HttpClient();
+  HttypThingy.get("/api/todos?owner=" + document.getElementById("owner").value, function (returned_json) {
+    document.getElementById('jsonDump').innerHTML = returned_json;
+  });
+}
+
+
+function filterTodosByCategory() {
+  console.log("Filtering the todos");
+
+  var HttypThingy = new HttpClient();
+  HttypThingy.get("/api/todos?category=" + document.getElementById("category").value, function (returned_json) {
+    document.getElementById('jsonDump').innerHTML = returned_json;
+  });
+}
+
 
 function HttpClient() {
   // We'll take a URL string, and a callback function.

@@ -42,6 +42,16 @@ public class Database {
       filteredTodos = filterTodosByKeyword(filteredTodos, targetKeyword);
     }
 
+    if(queryParams.containsKey("owner")){
+      String targetKeyword = queryParams.get("owner")[0];
+      filteredTodos = filterTodosByOwner(filteredTodos, targetKeyword);
+    }
+
+    if(queryParams.containsKey("category")){
+      String targetKeyword = queryParams.get("category")[0];
+      filteredTodos = filterTodosByCategory(filteredTodos, targetKeyword);
+    }
+
     if(queryParams.containsKey("limit")){
       int todoLimit = Integer.parseInt(queryParams.get("limit")[0]);
       Todo[] tempTodos = new Todo[todoLimit];
@@ -64,6 +74,14 @@ public class Database {
 
   public Todo[] filterTodosByKeyword(Todo[] todos, String targetKeyword){
     return Arrays.stream(todos).filter(x -> x.body.contains(targetKeyword)).toArray(Todo[]::new);
+  }
+
+  public Todo[] filterTodosByOwner(Todo[] todos, String targetOwner){
+    return Arrays.stream(todos).filter(x -> x.owner.equals(targetOwner)).toArray(Todo[]::new);
+  }
+
+  public Todo[] filterTodosByCategory(Todo[] todos, String targetCategory){
+    return Arrays.stream(todos).filter(x -> x.category.equals(targetCategory)).toArray(Todo[]::new);
   }
 
 }
