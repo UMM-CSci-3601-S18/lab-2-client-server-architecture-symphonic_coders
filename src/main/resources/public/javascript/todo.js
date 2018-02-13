@@ -83,11 +83,11 @@ function filterTodos() {
 
   var HttypThingy = new HttpClient();
   HttypThingy.get("/api/todos?keyword=" + document.getElementById("keyword").value
-                //+ "&status=" + document.getElementById("status").value
-                //+ "&_id=" + document.getElementById("keyword").value
+                + "&status=" + document.getElementById("status").value
                 + "&owner=" + document.getElementById("owner").value
-                //+ "&category" + document.getElementById("category").value
-                //+ "&limit=" + document.getElementById("limit").value
+                + "&category=" + document.getElementById("category").value
+                + "&limit=" + document.getElementById("limit").value
+                //+ "&order=" + document.getElementById("order").value
     , function (returned_json) {
       document.getElementById('jsonDump').innerHTML = returned_json;
     });

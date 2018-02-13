@@ -40,13 +40,13 @@ public class Database {
     }
 
     if(queryParams.containsKey("owner") && !(queryParams.get("owner")[0].equals(""))){
-      String targetKeyword = queryParams.get("owner")[0];
-      filteredTodos = filterTodosByOwner(filteredTodos, targetKeyword);
+      String targetOwner = queryParams.get("owner")[0];
+      filteredTodos = filterTodosByOwner(filteredTodos, targetOwner);
     }
 
     if(queryParams.containsKey("category") && !(queryParams.get("category")[0].equals(""))){
-      String targetKeyword = queryParams.get("category")[0];
-      filteredTodos = filterTodosByCategory(filteredTodos, targetKeyword);
+      String targetCategory = queryParams.get("category")[0];
+      filteredTodos = filterTodosByCategory(filteredTodos, targetCategory);
     }
 
     if(queryParams.containsKey("limit") && !(queryParams.get("limit")[0].equals(""))){
@@ -57,6 +57,15 @@ public class Database {
       }
       filteredTodos = tempTodos;
     }
+
+    //Doesn't work
+    /*
+    if(queryParams.containsKey("order") && !(queryParams.get("order")[0].equals(""))){
+      if(queryParams.get("order").equals("owner")){
+        SortExample.sortByOwner(filteredTodos);
+      }
+    }
+    */
 
     return filteredTodos;
   }
@@ -82,4 +91,3 @@ public class Database {
   }
 
 }
-//shh this is just so we can close issues
