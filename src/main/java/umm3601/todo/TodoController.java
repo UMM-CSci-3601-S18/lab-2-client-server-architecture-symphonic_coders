@@ -33,9 +33,15 @@ public class TodoController {
   }
 
 
-  public JsonObject getTodos(Request req, Response res) {
+  public JsonObject getAllTodos(Request req, Response res){
     res.type("application/json");
-    Todo[] todos = database.listTodos(req.queryMap().toMap());
+    Todo[] todos = database.listAllTodos(req.queryMap().toMap());
+    return buildSuccessJsonResponse("todos", gson.toJsonTree(todos));
+  }
+
+  public JsonObject getFilteredTodos(Request req, Response res) {
+    res.type("application/json");
+    Todo[] todos = database.listFilteredTodos(req.queryMap().toMap());
     return buildSuccessJsonResponse("todos", gson.toJsonTree(todos));
   }
 }

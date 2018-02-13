@@ -5,6 +5,7 @@ import com.google.gson.Gson;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.Arrays;
+import java.util.Comparator;
 import java.util.Map;
 
 public class Database {
@@ -20,7 +21,31 @@ public class Database {
     return Arrays.stream(allTodos).filter(x -> x._id.equals(id)).findFirst().orElse(null);
   }
 
-  public Todo[] listTodos(Map<String, String[]> queryParams) {
+  public Todo[] listAllTodos(Map<String, String[]> queryParams){
+    Todo[] sortedTodos = allTodos;
+
+      switch (queryParams.get("order")[0]) {
+        case "owner":
+          sortedTodos = sortTodos(sortedTodos, Comparator.comparing(x -> x.owner));
+          break;
+
+        case "body":
+          sortedTodos = sortTodos(sortedTodos, Comparator.comparing(x -> x.body));
+          break;
+
+        case "status":
+          sortedTodos = sortTodos(sortedTodos, Comparator.comparing(x -> x.status));
+          break;
+
+        case "category":
+          sortedTodos = sortTodos(sortedTodos, Comparator.comparing(x -> x.category));
+          break;
+      }
+
+    return sortedTodos;
+  }
+
+  public Todo[] listFilteredTodos(Map<String, String[]> queryParams) {
     Todo[] filteredTodos = allTodos;
 
     //Filter todos if defined
@@ -47,6 +72,32 @@ public class Database {
     if(queryParams.containsKey("category") && !(queryParams.get("category")[0].equals(""))){
       String targetCategory = queryParams.get("category")[0];
       filteredTodos = filterTodosByCategory(filteredTodos, targetCategory);
+    }
+      //KK showed us this code snippet from a previous lab. We looked into how it works and she gave us
+      //permission to use the code as long as we understand what it's doing
+      //Start a switch statement so that we can have many variations without many if else statements
+    if(queryParams.containsKey("order")) {
+      switch (queryParams.get("order")[0]) {
+        //Case acts almost like multiple if else statements
+        //Lets us check multiple things for which one's true and do something based off that
+        case "owner":
+          filteredTodos = sortTodos(filteredTodos,
+            //This lambda tells the function what to use as a comparator when sorting the todos ie by owner
+            Comparator.comparing(x -> x.owner));
+          break;
+
+        case "body":
+          filteredTodos = sortTodos(filteredTodos, Comparator.comparing(x -> x.body));
+          break;
+
+        case "status":
+          filteredTodos = sortTodos(filteredTodos, Comparator.comparing(x -> x.status));
+          break;
+
+        case "category":
+          filteredTodos = sortTodos(filteredTodos, Comparator.comparing(x -> x.category));
+          break;
+      }
     }
 
     if(queryParams.containsKey("limit") && !(queryParams.get("limit")[0].equals(""))){
@@ -88,6 +139,13 @@ public class Database {
 
   private Todo[] filterTodosByCategory(Todo[] todos, String targetCategory){
     return Arrays.stream(todos).filter(x -> x.category.equals(targetCategory)).toArray(Todo[]::new);
+  }
+
+  //Comparator<? super Todo> allows us to compare not just the Todos but also allows us to compare using their associated fields
+  //? super Todo sets the Comparator to be a generic super type or type of Todo
+  //Which allows it to look at the fields
+  private Todo[] sortTodos(Todo[] todos, Comparator<? super Todo> c){
+    return Arrays.stream(todos).sorted(c).toArray(Todo[]::new);
   }
 
 }

@@ -14,8 +14,8 @@ import static spark.debug.DebugScreen.*;
 
 public class Server {
 
-  public static final String USER_DATA_FILE = "src/main/data/users.json";
-  public static final String TODO_DATA_FILE = "src/main/data/todos.json";
+  private static final String USER_DATA_FILE = "src/main/data/users.json";
+  private static final String TODO_DATA_FILE = "src/main/data/todos.json";
   private static umm3601.user.Database userDatabase;
   private static umm3601.todo.Database todoDatabase;
 
@@ -46,7 +46,9 @@ public class Server {
     get("api/users", userController::getUsers);
 
     //Get all the todos
-    get("api/todos", todoController::getTodos);
+    get("api/todos", todoController::getAllTodos);
+    //Get a filtered list of the todos
+    get("api/filtertodos", todoController::getFilteredTodos);
 
     // An example of throwing an unhandled exception so you can see how the
     // Java Spark debugger displays sers.htmlerrors like this.

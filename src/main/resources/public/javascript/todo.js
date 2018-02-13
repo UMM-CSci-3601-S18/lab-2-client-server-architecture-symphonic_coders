@@ -2,11 +2,10 @@ function getAllTodos() {
   console.log("Getting all the todos.");
 
   var HttpThingy = new HttpClient();
-  HttpThingy.get("/api/todos", function (returned_json) {
+  HttpThingy.get("/api/todos?order=" + document.getElementById("order").value, function(returned_json){
     document.getElementById('jsonDump').innerHTML = returned_json;
   });
 }
-
 
 function filterTodosByLimit() {
   console.log("Filtering the todos");
@@ -82,12 +81,12 @@ function filterTodos() {
   console.log("Filtering the todos");
 
   var HttypThingy = new HttpClient();
-  HttypThingy.get("/api/todos?keyword=" + document.getElementById("keyword").value
+  HttypThingy.get("/api/filtertodos?keyword=" + document.getElementById("keyword").value
                 + "&status=" + document.getElementById("status").value
                 + "&owner=" + document.getElementById("owner").value
                 + "&category=" + document.getElementById("category").value
                 + "&limit=" + document.getElementById("limit").value
-                //+ "&order=" + document.getElementById("order").value
+                + "&order=" + document.getElementById("order").value
     , function (returned_json) {
       document.getElementById('jsonDump').innerHTML = returned_json;
     });
