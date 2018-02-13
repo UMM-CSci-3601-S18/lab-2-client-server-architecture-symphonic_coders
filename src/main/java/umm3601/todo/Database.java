@@ -24,6 +24,7 @@ public class Database {
   public Todo[] listAllTodos(Map<String, String[]> queryParams){
     Todo[] sortedTodos = allTodos;
 
+    if(queryParams.containsKey("order")) {
       switch (queryParams.get("order")[0]) {
         case "owner":
           sortedTodos = sortTodos(sortedTodos, Comparator.comparing(x -> x.owner));
@@ -41,6 +42,7 @@ public class Database {
           sortedTodos = sortTodos(sortedTodos, Comparator.comparing(x -> x.category));
           break;
       }
+    }
 
     return sortedTodos;
   }

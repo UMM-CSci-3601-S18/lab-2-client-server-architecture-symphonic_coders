@@ -14,8 +14,8 @@ import static spark.debug.DebugScreen.*;
 
 public class Server {
 
-  private static final String USER_DATA_FILE = "src/main/data/users.json";
-  private static final String TODO_DATA_FILE = "src/main/data/todos.json";
+  public static final String USER_DATA_FILE = "src/main/data/users.json";
+  public static final String TODO_DATA_FILE = "src/main/data/todos.json";
   private static umm3601.user.Database userDatabase;
   private static umm3601.todo.Database todoDatabase;
 
