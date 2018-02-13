@@ -18,7 +18,7 @@ public class FilterTodosByLimitFromDB {
     Map<String, String[]> queryParams = new HashMap<>();
 
     queryParams.put("limit", new String[] {"7"});
-    Todo[] listTodos7 = db.listTodos(queryParams);
+    Todo[] listTodos7 = db.listFilteredTodos(queryParams);
     assertEquals("Server did not properly limit todos", 7, listTodos7.length);
   }
 }

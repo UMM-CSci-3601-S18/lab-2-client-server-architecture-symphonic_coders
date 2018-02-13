@@ -13,7 +13,7 @@ public class FilterTodosByStatusFromDB {
   @Test
   public void filterTodosByStatusComplete() throws IOException{
     Database db = new Database("src/main/data/todos.json");
-    Todo[] allTodos = db.listTodos(new HashMap<>());
+    Todo[] allTodos = db.listAllTodos(new HashMap<>());
 
     Todo[] filteredTodos = db.filterTodosByStatus(allTodos, true);
     assertEquals("Incorrect number of todos returned by status complete", 143, filteredTodos.length);
@@ -25,14 +25,14 @@ public class FilterTodosByStatusFromDB {
     Map<String, String[]> queryParams = new HashMap<>();
 
     queryParams.put("status", new String[] {"true"});
-    Todo[] listFilteredTodos = db.listTodos(queryParams);
+    Todo[] listFilteredTodos = db.listFilteredTodos(queryParams);
     assertEquals("Incorrect number of todos returned by status complete", 143, listFilteredTodos.length);
   }
 
   @Test
   public void filterTodosByStatusIncomplete() throws IOException{
     Database db = new Database("src/main/data/todos.json");
-    Todo[] allTodos = db.listTodos(new HashMap<>());
+    Todo[] allTodos = db.listAllTodos(new HashMap<>());
 
     Todo[] filteredTodos = db.filterTodosByStatus(allTodos, false);
     assertEquals("Incorrect number of todos returned by status incomplete", 157, filteredTodos.length);
@@ -44,7 +44,7 @@ public class FilterTodosByStatusFromDB {
     Map<String, String[]> queryParams = new HashMap<>();
 
     queryParams.put("status", new String[] {"false"});
-    Todo[] listFilteredTodos = db.listTodos(queryParams);
+    Todo[] listFilteredTodos = db.listAllTodos(queryParams);
     assertEquals("Incorrect number of todos returned by status incomplete", 157, listFilteredTodos.length);
   }
 

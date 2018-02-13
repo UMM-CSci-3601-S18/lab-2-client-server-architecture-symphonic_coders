@@ -13,7 +13,7 @@ public class FilterTodosByKeywordFromDB {
   @Test
   public void filterTodosByKeyword() throws IOException{
     Database db = new Database("src/main/data/todos.json");
-    Todo[] allTodos = db.listTodos(new HashMap<>());
+    Todo[] allTodos = db.listFilteredTodos(new HashMap<>());
 
     Todo[] filteredTodos = db.filterTodosByKeyword(allTodos, "tempor");
     assertEquals("Incorrect number of todos returned by keyword", 68, filteredTodos.length);
@@ -25,7 +25,7 @@ public class FilterTodosByKeywordFromDB {
     Map<String, String[]> queryParams = new HashMap<>();
 
     queryParams.put("keyword", new String[] {"tempor"});
-    Todo[] listFilteredTodos = db.listTodos(queryParams);
+    Todo[] listFilteredTodos = db.listFilteredTodos(queryParams);
     assertEquals("Incorrect number of todos returned by keyword", 68, listFilteredTodos.length);
   }
 }
