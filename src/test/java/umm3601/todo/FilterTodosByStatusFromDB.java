@@ -44,7 +44,7 @@ public class FilterTodosByStatusFromDB {
     Map<String, String[]> queryParams = new HashMap<>();
 
     queryParams.put("status", new String[] {"false"});
-    Todo[] listFilteredTodos = db.listAllTodos(queryParams);
+    Todo[] listFilteredTodos = db.listFilteredTodos(queryParams);
     assertEquals("Incorrect number of todos returned by status incomplete", 157, listFilteredTodos.length);
   }
 
